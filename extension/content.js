@@ -2,7 +2,7 @@ const PARENT_DIV_SELECTOR = "#above-the-fold"
 const MAIN_CONTAINER_ID = "downbad-main-container"
 const DOWLOAD_BUTTON_ID = "downbad-download-btn"
 const LINK_CONTAINER_ID = "downbad-links-container"
-const API_URL = "http://localhost:4001/api/"
+const API_URL = "https://downbad.onrender.com/api/"
 
 const styleElement = (element) => {
     Object.assign(element.style, {
