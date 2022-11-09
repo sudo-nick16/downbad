@@ -1,0 +1,23 @@
+{
+    "name": "Downbad",
+    "description": "Download Youtube videos",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons": {
+        "128": "./downbad.png"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.youtube.com/*"
+            ],
+            "js": [
+                "./content.js"
+            ]
+        }
+    ],
+    "content_security_policy": {
+        "script-src": "self",
+        "object-src": "none"
+    }
+}
