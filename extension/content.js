@@ -53,18 +53,20 @@ styleElement(downloadBtn)
 
 
 downloadBtn.onclick = () => {
-
-    const vidUrl = encodeURI(window.location.href)
+    const vidUrl = encodeURIComponent(window.location.href)
     linksContainer.innerHTML = ''
     downloadBtn.innerText = 'Fetching...'
     fetch(API_URL + vidUrl).then(res => res.json()).then(data => {
-        downloadBtn.innerText = 'Download'
         const elements = getElements(data)
         const parentDiv = linksContainer
         elements.forEach(element => {
             parentDiv.appendChild(element)
         })
-    })
+    }).catch(err => {
+            console.log(err.message)
+        }).finally(() => {
+            downloadBtn.innerText = 'Download'
+        })
 }
 
 const elementInterval = setInterval(() => {
@@ -91,7 +93,10 @@ let previousUrl = '';
 const observer = new MutationObserver(function(_) {
     if (location.href !== previousUrl) {
         previousUrl = location.href;
-        document.querySelector(`#${LINK_CONTAINER_ID}`).innerHTML = ''
+        const linksContainer = document.querySelector(`#${LINK_CONTAINER_ID}`)
+        if(linksContainer){
+            linksContainer.innerHTML = ''
+        }
     }
 });
 const config = {subtree: true, childList: true};

@@ -14,7 +14,8 @@ describe("Test /api/:vidId", () => {
         const res = await request(server).get("/api/invalid")
         expect(res.statusCode).toEqual(400)
     })
-    afterAll(() => {
+    afterAll((done) => {
         server.close()
+        done()
     })
 });
