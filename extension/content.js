@@ -53,10 +53,11 @@ styleElement(downloadBtn)
 
 
 downloadBtn.onclick = () => {
-    const vidId = window.location.href.split('v=')[1]
+
+    const vidUrl = encodeURI(window.location.href)
     linksContainer.innerHTML = ''
     downloadBtn.innerText = 'Fetching...'
-    fetch(API_URL + vidId).then(res => res.json()).then(data => {
+    fetch(API_URL + vidUrl).then(res => res.json()).then(data => {
         downloadBtn.innerText = 'Download'
         const elements = getElements(data)
         const parentDiv = linksContainer
@@ -90,7 +91,6 @@ let previousUrl = '';
 const observer = new MutationObserver(function(_) {
     if (location.href !== previousUrl) {
         previousUrl = location.href;
-        console.log(`URL changed to ${location.href}`);
         document.querySelector(`#${LINK_CONTAINER_ID}`).innerHTML = ''
     }
 });
