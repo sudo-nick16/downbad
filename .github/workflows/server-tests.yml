@@ -5,6 +5,10 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+    
+defaults:
+ run:
+  working-directory: ./server
 
 jobs:
   tests:
@@ -23,6 +27,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
     - run: corepack enable
-    - run: cd server
     - run: yarn install --production=true
     - run: yarn test
