@@ -25,7 +25,6 @@ const getElements = ({videos, audios}) => {
         const element = document.createElement('a')
         element.innerText = quality
         element.href = url
-        element.download = true
         element.target = '_blank'
         styleElement(element)
         return element
@@ -77,9 +76,9 @@ const elementInterval = setInterval(() => {
         mainContainer.appendChild(downloadBtn)
         mainContainer.appendChild(linksContainer)
     }
-    const main = document.querySelector(`#${MAIN_CONTAINER_ID}`)
-    const button = document.querySelector(`#${DOWLOAD_BUTTON_ID}`)
-    const links = document.querySelector(`#${LINK_CONTAINER_ID}`)
+    const main = document.getElementById(MAIN_CONTAINER_ID)
+    const button = document.getElementById(DOWLOAD_BUTTON_ID)
+    const links = document.getElementById(LINK_CONTAINER_ID)
     if(main && button && links){
         clearElementInterval()
     }
@@ -93,7 +92,7 @@ let previousUrl = '';
 const observer = new MutationObserver(function(_) {
     if (location.href !== previousUrl) {
         previousUrl = location.href;
-        const linksContainer = document.querySelector(`#${LINK_CONTAINER_ID}`)
+        const linksContainer = document.getElementById(LINK_CONTAINER_ID)
         if(linksContainer){
             linksContainer.innerHTML = ''
         }

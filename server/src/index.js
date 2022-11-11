@@ -22,6 +22,7 @@ const getVideoUrls = async(vidId) => {
         }
     })
     const vidUrls = {
+        title: vidInfo.videoDetails?.title,
         audios: [],
         videos: [],
     }
